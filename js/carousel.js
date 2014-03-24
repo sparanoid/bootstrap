@@ -156,7 +156,9 @@
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
       $next.addClass(type)
+      /* jshint ignore:start */
       $next[0].offsetWidth // force reflow
+      /* jshint ignore:end */
       $active.addClass(direction)
       $next.addClass(direction)
       $active
