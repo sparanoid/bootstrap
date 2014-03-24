@@ -42,7 +42,9 @@
 
   Modal.prototype.show = function (_relatedTarget) {
     var that = this
-    var e    = $.Event('show.bs.modal', { relatedTarget: _relatedTarget })
+    var e    = $.Event('show.bs.modal', {
+      relatedTarget: _relatedTarget
+    })
 
     this.$element.trigger(e)
 
@@ -81,7 +83,9 @@
 
       that.enforceFocus()
 
-      var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
+      var e = $.Event('shown.bs.modal', {
+        relatedTarget: _relatedTarget
+      })
 
       if (transition) {
         that.$element.find('.modal-dialog') // wait for modal to slide in
@@ -240,7 +244,7 @@
     this.scrollbarWidth = this.scrollbarWidth || this.measureScrollbar()
   }
 
-  Modal.prototype.setScrollbar =  function () {
+  Modal.prototype.setScrollbar = function () {
     var bodyPad = parseInt((this.$body.css('padding-right') || 0), 10)
     if (this.scrollbarWidth) {
       this.$body.css('padding-right', bodyPad + this.scrollbarWidth)

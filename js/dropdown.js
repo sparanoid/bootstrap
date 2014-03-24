@@ -37,7 +37,9 @@
         $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
       }
 
-      var relatedTarget = { relatedTarget: this }
+      var relatedTarget = {
+        relatedTarget: this
+      }
       $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
 
       if (e.isDefaultPrevented()) {
@@ -88,10 +90,10 @@
     var index = $items.index($items.filter(':focus'))
 
     if (e.keyCode === 38 && index > 0) {
-      index--       // up
+      index-- // up
     }
     if (e.keyCode === 40 && index < $items.length - 1) {
-      index++       // down
+      index++ // down
     }
     if (!~index) {
       index = 0
@@ -107,7 +109,9 @@
     $(backdrop).remove()
     $(toggle).each(function () {
       var $parent = getParent($(this))
-      var relatedTarget = { relatedTarget: this }
+      var relatedTarget = {
+        relatedTarget: this
+      }
       if (!$parent.hasClass('open')) {
         return
       }

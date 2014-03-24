@@ -71,8 +71,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
     .error(function (err) {
       try {
         showError('<strong>Ruh roh!</strong> Could not save gist file, configuration not saved.', err)
-      }
-      catch (sameErr) {
+      } catch (sameErr) {
         // deliberately ignore the error
       }
       callback('<none>', '<none>')
@@ -168,7 +167,9 @@ window.onload = function () { // wait for load in a dumb way because B-0
       var fontsFolder = zip.folder('fonts')
       for (var fontsFileName in fonts) {
         if (fonts.hasOwnProperty(fontsFileName)) {
-          fontsFolder.file(fontsFileName, fonts[fontsFileName], { base64: true })
+          fontsFolder.file(fontsFileName, fonts[fontsFileName], {
+            base64: true
+          })
         }
       }
     }
@@ -177,7 +178,9 @@ window.onload = function () { // wait for load in a dumb way because B-0
       zip.file('config.json', config)
     }
 
-    var content = zip.generate({ type: 'blob' })
+    var content = zip.generate({
+      type: 'blob'
+    })
 
     complete(content)
   }
@@ -229,7 +232,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
     var lessSource = __less[lessFilename]
 
     var lessFilenames = includedLessFilenames(lessFilename)
-    $.each(lessFilenames, function(index, filename) {
+    $.each(lessFilenames, function (index, filename) {
       var fileInclude = lessFileIncludes[filename]
 
       // Files not explicitly unchecked are compiled into the final stylesheet.
@@ -263,14 +266,16 @@ window.onload = function () { // wait for load in a dumb way because B-0
         return showError('<strong>Ruh roh!</strong> Could not parse less files.', err)
       }
       intoResult[baseFilename + '.css']     = cw + tree.toCSS()
-      intoResult[baseFilename + '.min.css'] = cw + tree.toCSS({ compress: true })
+      intoResult[baseFilename + '.min.css'] = cw + tree.toCSS({
+        compress: true
+      })
     })
   }
 
   function generateCSS(preamble) {
     var oneChecked = false
     var lessFileIncludes = {}
-    $('#less-section input').each(function() {
+    $('#less-section input').each(function () {
       var $this = $(this)
       var checked = $this.is(':checked')
       lessFileIncludes[$this.val()] = checked
@@ -330,10 +335,9 @@ window.onload = function () { // wait for load in a dumb way because B-0
       return false
     }
 
-    var js = $checked
-      .map(function () { return __js[this.value] })
-      .toArray()
-      .join('\n')
+    var js = $checked.map(function () {
+      return __js[this.value]
+    }).toArray().join('\n')
 
     preamble = cw + preamble
     js = jqueryCheck + js
@@ -447,8 +451,7 @@ window.onload = function () { // wait for load in a dumb way because B-0
       // than "blob:", which means it has been polyfilled and is not supported by
       // this browser.
       failback()
-    }
-    else {
+    } else {
       $('<img>')
         .on('load', function () {
           $compileBtn.prop('disabled', false)
